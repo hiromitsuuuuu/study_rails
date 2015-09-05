@@ -1,0 +1,76 @@
+  [1m[36m (60.7ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (30.4ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateEntries (20150901143251)
+  [1m[35m (30.1ms)[0m  CREATE TABLE `entries` (`id` int(11) auto_increment PRIMARY KEY, `title` varchar(255), `body` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (6.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (17.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150901143251')
+  [1m[36m (5.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (29.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'study_rails_development'
+  AND fk.table_name = 'entries'
+[0m
+  [1m[35m (0.4ms)[0m  SHOW CREATE TABLE `entries`
+
+
+Started GET "/entries" for 127.0.0.1 at 2015-09-01 23:33:54 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by EntriesController#index as HTML
+  [1m[35mEntry Load (0.4ms)[0m  SELECT `entries`.* FROM `entries`
+  Rendered entries/index.html.erb within layouts/application (33.9ms)
+Completed 200 OK in 1682ms (Views: 1636.9ms | ActiveRecord: 27.2ms)
+
+
+Started GET "/assets/entries.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-01 23:33:56 +0900
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-01 23:33:56 +0900
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-01 23:33:56 +0900
+
+
+Started GET "/assets/scaffolds.self-c6b2f94f9502a716648c510d17a0df2c64539f096f40df704f42370b03339cdc.css?body=1" for 127.0.0.1 at 2015-09-01 23:33:56 +0900
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-01 23:33:56 +0900
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-01 23:33:56 +0900
+
+
+Started GET "/assets/entries.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-01 23:33:56 +0900
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-01 23:33:56 +0900
+
+
+Started GET "/entries/new" for 127.0.0.1 at 2015-09-01 23:34:04 +0900
+Processing by EntriesController#new as HTML
+  Rendered entries/_form.html.erb (31.1ms)
+  Rendered entries/new.html.erb within layouts/application (38.1ms)
+Completed 200 OK in 91ms (Views: 82.8ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/entries" for 127.0.0.1 at 2015-09-01 23:34:25 +0900
+Processing by EntriesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ShR7YuxerRtauvT0LjvCsNmRm7cHQO8Pd6WzNZGFBdPKkDH4zALo01kXNrSLlZjbPsKqQvTmIDmuHnshy9u9pA==", "entry"=>{"title"=>"Hello Mitsu :)", "body"=>"My name is Mitsu :)"}, "commit"=>"Create Entry"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (6.9ms)[0m  INSERT INTO `entries` (`title`, `body`, `created_at`, `updated_at`) VALUES ('Hello Mitsu :)', 'My name is Mitsu :)', '2015-09-01 14:34:25', '2015-09-01 14:34:25')
+  [1m[36m (12.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://0.0.0.0:3000/entries/1
+Completed 302 Found in 26ms (ActiveRecord: 19.1ms)
+
+
+Started GET "/entries/1" for 127.0.0.1 at 2015-09-01 23:34:25 +0900
+Processing by EntriesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEntry Load (23.3ms)[0m  SELECT  `entries`.* FROM `entries` WHERE `entries`.`id` = 1 LIMIT 1
+  Rendered entries/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 93ms (Views: 57.6ms | ActiveRecord: 23.3ms)
